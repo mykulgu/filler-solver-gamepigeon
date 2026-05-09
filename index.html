@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Filler Solver</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">8 x 7 Filler</p>
+          <h1>Filler Solver</h1>
+        </div>
+        <div class="toolbar" aria-label="Game actions">
+          <button id="undoBtn" class="button secondary" type="button">Undo</button>
+          <button id="resetBtn" class="button secondary" type="button">Reset</button>
+          <button id="blankBoardTopBtn" class="button secondary" type="button">Blank Board</button>
+          <button id="analyzeTopBtn" class="button primary" type="button">Analyze</button>
+        </div>
+      </header>
+
+      <section class="game-layout">
+        <section class="play-surface" aria-label="Game board">
+          <div class="score-strip">
+            <div>
+              <span class="label">Turn</span>
+              <strong id="turnLabel">Your move</strong>
+            </div>
+            <div>
+              <span class="label">You</span>
+              <strong id="youScore">1</strong>
+            </div>
+            <div>
+              <span class="label">Opponent</span>
+              <strong id="oppScore">1</strong>
+            </div>
+            <div>
+              <span class="label">Open</span>
+              <strong id="openScore">54</strong>
+            </div>
+          </div>
+
+          <div id="board" class="board" aria-label="Filler board"></div>
+
+          <div class="current-colors" aria-label="Current player colors">
+            <div class="color-readout">
+              <span id="youColorDot" class="dot"></span>
+              <span id="youColorName">You: Black</span>
+            </div>
+            <div class="color-readout">
+              <span id="oppColorDot" class="dot"></span>
+              <span id="oppColorName">Opponent: Purple</span>
+            </div>
+          </div>
+
+          <div id="palette" class="palette" aria-label="Legal color choices"></div>
+        </section>
+
+        <aside class="side-panel" aria-label="Controls">
+          <section class="tool-panel">
+            <div class="panel-heading">
+              <h2>Move Analysis</h2>
+              <button id="playBestBtn" class="button primary" type="button">Play Best</button>
+            </div>
+
+            <div class="control-grid">
+              <label>
+                <span>Calculate For</span>
+                <select id="solverTarget">
+                  <option value="current">Current Turn</option>
+                  <option value="you">You</option>
+                  <option value="opponent">Opponent</option>
+                </select>
+              </label>
+              <label>
+                <span>Depth</span>
+                <input id="depthInput" type="number" min="1" max="60" value="9" />
+              </label>
+              <label>
+                <span>Time Limit</span>
+                <input id="timeInput" type="number" min="250" step="250" value="2500" />
+              </label>
+              <label class="check-row">
+                <input id="exactInput" type="checkbox" />
+                <span>Exact</span>
+              </label>
+              <label class="check-row">
+                <input id="autoOpponentInput" type="checkbox" />
+                <span>Auto Opponent</span>
+              </label>
+            </div>
+
+            <div class="button-row">
+              <button id="analyzeBtn" class="button primary" type="button">Analyze</button>
+              <button id="autoOpponentBtn" class="button secondary" type="button">Opponent Move</button>
+            </div>
+
+            <div id="analysisMeta" class="analysis-meta">No analysis yet.</div>
+            <div id="analysisTable" class="analysis-table"></div>
+          </section>
+
+          <section class="tool-panel">
+            <div class="panel-heading">
+              <h2>Board Actions</h2>
+            </div>
+
+            <div id="parseMessage" class="parse-message" role="status"></div>
+            <div class="button-row wrap">
+              <input id="screenshotInput" class="file-input" type="file" accept="image/*" hidden />
+              <button id="uploadScreenshotBtn" class="button primary" type="button">Upload Screenshot</button>
+              <button id="blankBoardBtn" class="button secondary" type="button">Blank Board</button>
+              <button id="exampleBoardBtn" class="button secondary" type="button">Example</button>
+              <button id="randomBoardBtn" class="button secondary" type="button">Random</button>
+            </div>
+          </section>
+
+          <section class="tool-panel">
+            <div class="panel-heading">
+              <h2>Move Log</h2>
+              <span id="engineStatus" class="engine-status">Engine ready</span>
+            </div>
+            <ol id="moveLog" class="move-log"></ol>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
