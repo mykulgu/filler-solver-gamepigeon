@@ -83,9 +83,47 @@ h2 {
   gap: 10px;
 }
 
+.header-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nav-link {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.62);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  border-color: var(--teal-dark);
+  color: var(--teal-dark);
+  background: #edf8f5;
+}
+
 .toolbar {
   flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+.button[href] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .button {
@@ -147,6 +185,153 @@ h2 {
 .side-panel {
   display: grid;
   gap: 14px;
+}
+
+.rules-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  gap: 14px;
+  align-items: start;
+}
+
+.rules-main,
+.example-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 18px 54px rgba(63, 66, 68, 0.12);
+}
+
+.rules-main {
+  padding: 18px;
+}
+
+.rules-section + .rules-section {
+  margin-top: 22px;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.rules-section p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.rules-section h2 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.rule-steps {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.rule-steps li {
+  padding-left: 4px;
+}
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.strategy-grid > div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--surface);
+}
+
+.strategy-grid h3 {
+  margin: 0 0 6px;
+  font-size: 0.98rem;
+}
+
+.strategy-grid p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.rules-visual {
+  position: sticky;
+  top: 14px;
+}
+
+.example-card {
+  padding: 12px;
+}
+
+.example-board {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 3px;
+  margin: 8px auto 12px;
+  width: min(100%, 390px);
+  padding: 6px;
+  border: 1px solid #cfc7b7;
+  border-radius: 8px;
+  background: #383a3b;
+  box-shadow: 0 18px 40px rgba(30, 31, 32, 0.2);
+}
+
+.example-board span {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  border-radius: 4px;
+  background: var(--cell-color);
+}
+
+.example-board span[data-corner]::after {
+  position: absolute;
+  inset: 4px;
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  border-radius: 3px;
+  content: "";
+}
+
+.example-board span[data-corner="opponent"]::after {
+  border-color: rgba(23, 23, 23, 0.76);
+}
+
+.color-key {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.color-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.color-key i {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(23, 23, 23, 0.16);
+  border-radius: 5px;
+  background: var(--key-color);
+}
+
+.example-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .score-strip {
@@ -467,8 +652,14 @@ tr.best-row {
 }
 
 @media (max-width: 620px) {
-  .game-layout {
+  .game-layout,
+  .rules-layout,
+  .strategy-grid {
     grid-template-columns: 1fr;
+  }
+
+  .rules-visual {
+    position: static;
   }
 }
 
@@ -483,16 +674,24 @@ tr.best-row {
     flex-direction: column;
   }
 
-  .toolbar {
+  .header-actions,
+  .toolbar,
+  .site-nav {
+    justify-items: stretch;
     justify-content: stretch;
   }
 
-  .toolbar .button {
+  .toolbar .button,
+  .site-nav .nav-link,
+  .header-actions > .button {
     flex: 1 1 0;
+    text-align: center;
   }
 
   .play-surface,
-  .tool-panel {
+  .tool-panel,
+  .rules-main,
+  .example-card {
     padding: 10px;
   }
 
