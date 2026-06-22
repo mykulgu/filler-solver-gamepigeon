@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>How to Play GamePigeon Filler</title>
+    <title>How to Play Filler on GamePigeon | Game Pigeon Rules</title>
     <meta
       name="description"
-      content="Learn how GamePigeon Filler works: setup, legal colors, capturing adjacent squares, scoring, and basic strategy."
+      content="Learn how to play Filler on GamePigeon, how to win Filler, and when to use a Filler solver for better moves."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,7 +15,7 @@
       <header class="topbar">
         <div>
           <p class="eyebrow">Filler rules</p>
-          <h1>How to Play GamePigeon Filler</h1>
+          <h1>How to Play Filler on GamePigeon</h1>
         </div>
         <div class="header-actions">
           <nav class="site-nav" aria-label="Site navigation">
@@ -33,7 +33,8 @@
             <div class="rule-chips" aria-label="Filler basics">
               <span>8 x 7 board</span>
               <span>6 colors</span>
-              <span>You move first</span>
+              <span>Random start colors</span>
+              <span>Either player may start</span>
               <span>No diagonal captures</span>
             </div>
           </section>
@@ -43,7 +44,7 @@
               <div class="step-number">1</div>
               <div>
                 <h2>Start in the corners</h2>
-                <p>You are black in the bottom-left. Your opponent is purple in the top-right.</p>
+                <p>You are in the bottom-left. Your opponent is in the top-right. The starting colors can change.</p>
               </div>
               <div class="mini-board corner-demo" aria-hidden="true">
                 <span></span><span></span><span></span><span class="opponent"></span>
@@ -57,23 +58,23 @@
               <div class="step-number">2</div>
               <div>
                 <h2>Pick a legal color</h2>
-                <p>You cannot pick your color or your opponent's color. First move: no black, no purple.</p>
+                <p>The player moving cannot pick either player's current color.</p>
               </div>
               <div class="choice-row" aria-hidden="true">
                 <span style="--choice-color: var(--red)">Red</span>
-                <span style="--choice-color: var(--green)">Green</span>
                 <span style="--choice-color: var(--yellow)">Yellow</span>
-                <span style="--choice-color: var(--blue)">Blue</span>
-                <span class="blocked" style="--choice-color: var(--black)">Black</span>
-                <span class="blocked" style="--choice-color: var(--purple)">Purple</span>
+                <span style="--choice-color: var(--purple)">Purple</span>
+                <span style="--choice-color: var(--black)">Black</span>
+                <span class="blocked" style="--choice-color: var(--blue)">Blue</span>
+                <span class="blocked" style="--choice-color: var(--green)">Green</span>
               </div>
             </div>
 
             <div class="step-card">
               <div class="step-number">3</div>
               <div>
-                <h2>Your territory changes</h2>
-                <p>If you choose red, every square you own turns red.</p>
+                <h2>Territory changes color</h2>
+                <p>Every square the moving player owns becomes the color they choose.</p>
               </div>
               <div class="change-demo" aria-hidden="true">
                 <div class="mini-board small-demo">
@@ -94,7 +95,7 @@
               <div class="step-number">4</div>
               <div>
                 <h2>Capture touching matches</h2>
-                <p>You take matching squares that touch your area up, down, left, or right.</p>
+                <p>The moving player takes matching squares that touch their area up, down, left, or right.</p>
               </div>
               <div class="capture-demo" aria-hidden="true">
                 <div class="mini-board capture-board">
@@ -110,7 +111,7 @@
               <div class="step-number">5</div>
               <div>
                 <h2>Take turns until full</h2>
-                <p>Opponent moves next. Keep choosing colors until every square is owned.</p>
+                <p>Players alternate moves until every square is owned.</p>
               </div>
               <div class="score-demo" aria-hidden="true">
                 <span><strong>29</strong>You</span>
@@ -133,67 +134,11 @@
         <aside class="rules-visual" aria-label="Filler example board">
           <div class="example-card">
             <div class="panel-heading">
-              <h2>Example Board</h2>
-              <span class="engine-status">Your first move</span>
+              <h2>Live Demo</h2>
+              <span id="demoStep" class="engine-status">Setup</span>
             </div>
-            <div class="example-board" aria-hidden="true">
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--purple)" data-corner="opponent"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-              <span style="--cell-color: var(--red)"></span>
-              <span style="--cell-color: var(--yellow)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--black)" data-corner="you"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--black)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--green)"></span>
-              <span style="--cell-color: var(--purple)"></span>
-              <span style="--cell-color: var(--blue)"></span>
-            </div>
+            <div id="demoBoard" class="example-board live-board" aria-label="Animated Filler board demo"></div>
+            <div id="demoChoices" class="demo-choices" aria-label="Demo legal color choices"></div>
             <div class="color-key" aria-label="Filler colors">
               <span><i style="--key-color: var(--red)"></i>Red</span>
               <span><i style="--key-color: var(--green)"></i>Green</span>
@@ -202,12 +147,138 @@
               <span><i style="--key-color: var(--purple)"></i>Purple</span>
               <span><i style="--key-color: var(--black)"></i>Black</span>
             </div>
-            <p class="example-note">
-              First move: choose red, green, yellow, or blue. Black and purple are blocked.
-            </p>
+            <p id="demoCaption" class="example-note">Watch a full turn cycle: setup, legal colors, capture, then the opponent moves.</p>
           </div>
         </aside>
       </section>
     </main>
+    <script>
+      (() => {
+        const colors = {
+          R: { name: "Red", hex: "#e7465b", text: "#171717" },
+          G: { name: "Green", hex: "#a8d65d", text: "#171717" },
+          Y: { name: "Yellow", hex: "#ffe45c", text: "#171717" },
+          B: { name: "Blue", hex: "#58a9e6", text: "#171717" },
+          P: { name: "Purple", hex: "#8067b7", text: "#ffffff" },
+          K: { name: "Black", hex: "#3f4244", text: "#ffffff" },
+        };
+        const colorOrder = ["R", "G", "Y", "B", "P", "K"];
+        const board = [
+          "P", "Y", "R", "K", "B", "P", "R", "G",
+          "K", "R", "B", "G", "Y", "K", "G", "R",
+          "Y", "G", "P", "R", "K", "Y", "B", "P",
+          "R", "B", "Y", "K", "R", "P", "G", "Y",
+          "G", "R", "P", "Y", "B", "K", "R", "P",
+          "P", "Y", "K", "R", "G", "B", "Y", "K",
+          "B", "R", "Y", "G", "P", "R", "K", "Y",
+        ];
+        const frames = [
+          {
+            label: "1. Start",
+            caption: "Starts are corners, but colors and first turn can vary. Here you are blue and the opponent is green.",
+            youColor: "B",
+            oppColor: "G",
+            you: [48],
+            opp: [7],
+            turn: "Opponent starts",
+            chosen: null,
+          },
+          {
+            label: "2. Legal colors",
+            caption: "The player moving cannot pick blue or green, because those are the current player colors.",
+            youColor: "B",
+            oppColor: "G",
+            you: [48],
+            opp: [7],
+            turn: "Opponent starts",
+            chosen: null,
+          },
+          {
+            label: "3. Pick red",
+            caption: "Opponent chooses red. Their owned square changes from green to red.",
+            youColor: "B",
+            oppColor: "R",
+            you: [48],
+            opp: [7],
+            turn: "Opponent chose red",
+            chosen: "R",
+          },
+          {
+            label: "4. Capture",
+            caption: "Any red squares touching the opponent's area are captured. Diagonals still do not count.",
+            youColor: "B",
+            oppColor: "R",
+            you: [48],
+            opp: [7, 6, 15],
+            turn: "Opponent gained 2",
+            chosen: "R",
+          },
+          {
+            label: "5. Your turn",
+            caption: "Now you move. You cannot choose blue or red, so green, yellow, purple, and black are legal.",
+            youColor: "B",
+            oppColor: "R",
+            you: [48],
+            opp: [7, 6, 15],
+            turn: "Your move",
+            chosen: null,
+          },
+          {
+            label: "6. Keep going",
+            caption: "Players alternate until the board is full. Most squares wins.",
+            youColor: "Y",
+            oppColor: "R",
+            you: [48, 49, 50],
+            opp: [7, 6, 15],
+            turn: "You chose yellow",
+            chosen: "Y",
+          },
+        ];
+        const boardEl = document.getElementById("demoBoard");
+        const choicesEl = document.getElementById("demoChoices");
+        const captionEl = document.getElementById("demoCaption");
+        const stepEl = document.getElementById("demoStep");
+        if (!boardEl || !choicesEl || !captionEl || !stepEl) return;
+
+        boardEl.innerHTML = board.map((id, index) => {
+          const color = colors[id];
+          return `<span data-cell="${index}" style="--cell-color:${color.hex}; color:${color.text}"></span>`;
+        }).join("");
+
+        function renderChoices(frame) {
+          choicesEl.innerHTML = colorOrder.map((id) => {
+            const color = colors[id];
+            const blocked = id === frame.youColor || id === frame.oppColor;
+            const active = id === frame.chosen;
+            return `<span class="${blocked ? "blocked" : ""} ${active ? "active" : ""}" style="--choice-color:${color.hex}">${color.name}</span>`;
+          }).join("");
+        }
+
+        function renderFrame(frame) {
+          const you = new Set(frame.you);
+          const opp = new Set(frame.opp);
+          stepEl.textContent = frame.label;
+          captionEl.textContent = frame.caption;
+          boardEl.dataset.turn = frame.turn;
+          for (const cell of boardEl.children) {
+            const index = Number(cell.dataset.cell);
+            const owner = you.has(index) ? "you" : opp.has(index) ? "opponent" : "open";
+            const colorId = owner === "you" ? frame.youColor : owner === "opponent" ? frame.oppColor : board[index];
+            const color = colors[colorId];
+            cell.dataset.owner = owner;
+            cell.style.setProperty("--cell-color", color.hex);
+            cell.style.color = color.text;
+          }
+          renderChoices(frame);
+        }
+
+        let frameIndex = 0;
+        renderFrame(frames[frameIndex]);
+        window.setInterval(() => {
+          frameIndex = (frameIndex + 1) % frames.length;
+          renderFrame(frames[frameIndex]);
+        }, 2300);
+      })();
+    </script>
   </body>
 </html>
