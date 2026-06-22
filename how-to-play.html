@@ -26,68 +26,107 @@
         </div>
       </header>
 
-      <section class="rules-layout">
+      <section class="rules-layout visual-rules">
         <article class="rules-main">
-          <section class="rules-section">
-            <p class="lead">
-              Filler is a two-player color-control game played on a fixed 8 by 7 board. You start in the
-              bottom-left corner, your opponent starts in the top-right corner, and each turn is a choice
-              between the colors neither player currently owns.
-            </p>
+          <section class="quick-start">
+            <p class="lead">Goal: own more squares than your opponent when the board is full.</p>
+            <div class="rule-chips" aria-label="Filler basics">
+              <span>8 x 7 board</span>
+              <span>6 colors</span>
+              <span>You move first</span>
+              <span>No diagonal captures</span>
+            </div>
           </section>
 
-          <section class="rules-section">
-            <h2>The Starting Position</h2>
-            <p>
-              Your first square is the bottom-left corner and starts as black. Your opponent's first square is
-              the top-right corner and starts as purple. You always move first.
-            </p>
-            <p>
-              The board is always 8 columns wide and 7 rows tall, using the same six colors: red, green,
-              yellow, blue, purple, and black.
-            </p>
-          </section>
-
-          <section class="rules-section">
-            <h2>How a Turn Works</h2>
-            <ol class="rule-steps">
-              <li>Choose any color except your current color and your opponent's current color.</li>
-              <li>All squares you already own change to the color you picked.</li>
-              <li>You capture any touching square of that color connected to your territory.</li>
-              <li>Only horizontal and vertical connections count. Diagonal squares do not connect.</li>
-              <li>You cannot capture squares that your opponent already owns.</li>
-            </ol>
-          </section>
-
-          <section class="rules-section">
-            <h2>Winning the Game</h2>
-            <p>
-              Players alternate turns until every square belongs to someone. The winner is the player with the
-              most squares at the end. If both players finish with the same number of squares, the game is a
-              draw.
-            </p>
-          </section>
-
-          <section class="rules-section">
-            <h2>Basic Strategy</h2>
-            <div class="strategy-grid">
+          <section class="step-walkthrough" aria-label="How to play Filler in five steps">
+            <div class="step-card">
+              <div class="step-number">1</div>
               <div>
-                <h3>Grow through clusters</h3>
-                <p>Large connected groups are usually more valuable than a single isolated square.</p>
+                <h2>Start in the corners</h2>
+                <p>You are black in the bottom-left. Your opponent is purple in the top-right.</p>
               </div>
-              <div>
-                <h3>Watch the border</h3>
-                <p>Moves that create more future options can matter more than the biggest immediate gain.</p>
-              </div>
-              <div>
-                <h3>Block key colors</h3>
-                <p>Your color choice also removes that color from your opponent's next legal choices.</p>
-              </div>
-              <div>
-                <h3>Count the endgame</h3>
-                <p>Late turns are often about denying a capture path instead of expanding quickly.</p>
+              <div class="mini-board corner-demo" aria-hidden="true">
+                <span></span><span></span><span></span><span class="opponent"></span>
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+                <span class="you"></span><span></span><span></span><span></span>
               </div>
             </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div>
+                <h2>Pick a legal color</h2>
+                <p>You cannot pick your color or your opponent's color. First move: no black, no purple.</p>
+              </div>
+              <div class="choice-row" aria-hidden="true">
+                <span style="--choice-color: var(--red)">Red</span>
+                <span style="--choice-color: var(--green)">Green</span>
+                <span style="--choice-color: var(--yellow)">Yellow</span>
+                <span style="--choice-color: var(--blue)">Blue</span>
+                <span class="blocked" style="--choice-color: var(--black)">Black</span>
+                <span class="blocked" style="--choice-color: var(--purple)">Purple</span>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div>
+                <h2>Your territory changes</h2>
+                <p>If you choose red, every square you own turns red.</p>
+              </div>
+              <div class="change-demo" aria-hidden="true">
+                <div class="mini-board small-demo">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                  <span class="you"></span><span></span><span></span>
+                </div>
+                <span class="arrow">-&gt;</span>
+                <div class="mini-board small-demo">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                  <span class="you red"></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div>
+                <h2>Capture touching matches</h2>
+                <p>You take matching squares that touch your area up, down, left, or right.</p>
+              </div>
+              <div class="capture-demo" aria-hidden="true">
+                <div class="mini-board capture-board">
+                  <span></span><span class="red-target"></span><span></span>
+                  <span class="red-target"></span><span class="you red"></span><span class="diagonal"></span>
+                  <span></span><span></span><span class="red-target muted-target"></span>
+                </div>
+                <p>Side touches count. Diagonals do not.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">5</div>
+              <div>
+                <h2>Take turns until full</h2>
+                <p>Opponent moves next. Keep choosing colors until every square is owned.</p>
+              </div>
+              <div class="score-demo" aria-hidden="true">
+                <span><strong>29</strong>You</span>
+                <span><strong>27</strong>Opponent</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="rules-recap">
+            <h2>Rules at a glance</h2>
+            <ul>
+              <li>Owned squares always become the color you choose.</li>
+              <li>You capture connected squares of that same color.</li>
+              <li>Opponent-owned squares are blocked.</li>
+              <li>Most owned squares at the end wins.</li>
+            </ul>
           </section>
         </article>
 
@@ -164,7 +203,7 @@
               <span><i style="--key-color: var(--black)"></i>Black</span>
             </div>
             <p class="example-note">
-              On the first turn you cannot choose black or purple, so red, green, yellow, and blue are legal.
+              First move: choose red, green, yellow, or blue. Black and purple are blocked.
             </p>
           </div>
         </aside>
