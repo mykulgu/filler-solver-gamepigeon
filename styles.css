@@ -308,12 +308,12 @@ h2 {
 
 .mini-board .you {
   border: 3px solid rgba(255, 255, 255, 0.95);
-  background: var(--black);
+  background: var(--blue);
 }
 
 .mini-board .opponent {
   border: 3px solid rgba(23, 23, 23, 0.76);
-  background: var(--purple);
+  background: var(--green);
 }
 
 .mini-board .red,
@@ -483,6 +483,7 @@ h2 {
 }
 
 .example-board {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 3px;
@@ -501,9 +502,16 @@ h2 {
   min-width: 0;
   border-radius: 4px;
   background: var(--cell-color);
+  transition:
+    background 360ms ease,
+    box-shadow 360ms ease,
+    transform 360ms ease,
+    opacity 360ms ease;
 }
 
-.example-board span[data-corner]::after {
+.example-board span[data-corner]::after,
+.example-board span[data-owner="you"]::after,
+.example-board span[data-owner="opponent"]::after {
   position: absolute;
   inset: 4px;
   border: 3px solid rgba(255, 255, 255, 0.92);
@@ -511,8 +519,72 @@ h2 {
   content: "";
 }
 
-.example-board span[data-corner="opponent"]::after {
+.example-board span[data-corner="opponent"]::after,
+.example-board span[data-owner="opponent"]::after {
   border-color: rgba(23, 23, 23, 0.76);
+}
+
+.example-board span[data-owner="you"],
+.example-board span[data-owner="opponent"] {
+  transform: scale(1.03);
+}
+
+.live-board::after {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(23, 23, 23, 0.12);
+  border-radius: 8px;
+  padding: 5px 7px;
+  background: rgba(251, 252, 247, 0.88);
+  color: var(--ink);
+  content: attr(data-turn);
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.demo-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.demo-choices span {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 7px 7px 27px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.demo-choices span::before {
+  position: absolute;
+  top: 50%;
+  left: 7px;
+  width: 13px;
+  height: 13px;
+  border: 1px solid rgba(23, 23, 23, 0.16);
+  border-radius: 4px;
+  background: var(--choice-color);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.demo-choices .blocked {
+  opacity: 0.42;
+  text-decoration: line-through;
+}
+
+.demo-choices .active {
+  border-color: var(--teal-dark);
+  color: var(--ink);
+  background: #edf8f5;
 }
 
 .color-key {
@@ -942,5 +1014,9 @@ tr.best-row {
   .swatch-button {
     flex: 1 1 calc(50% - 10px);
     justify-content: start;
+  }
+
+  .demo-choices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
