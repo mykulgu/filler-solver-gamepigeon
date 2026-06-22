@@ -139,6 +139,10 @@
             </div>
             <div id="demoBoard" class="example-board live-board" aria-label="Animated Filler board demo"></div>
             <div id="demoChoices" class="demo-choices" aria-label="Demo legal color choices"></div>
+            <div class="demo-controls" aria-label="Demo controls">
+              <button id="demoPrev" class="tiny-button" type="button">Back</button>
+              <button id="demoNext" class="tiny-button" type="button">Next</button>
+            </div>
             <div class="color-key" aria-label="Filler colors">
               <span><i style="--key-color: var(--red)"></i>Red</span>
               <span><i style="--key-color: var(--green)"></i>Green</span>
@@ -147,7 +151,7 @@
               <span><i style="--key-color: var(--purple)"></i>Purple</span>
               <span><i style="--key-color: var(--black)"></i>Black</span>
             </div>
-            <p id="demoCaption" class="example-note">Watch a full turn cycle: setup, legal colors, capture, then the opponent moves.</p>
+            <p id="demoCaption" class="example-note">Use Back and Next to step through setup, legal colors, capture, and the next turn.</p>
           </div>
         </aside>
       </section>
@@ -225,20 +229,22 @@
           },
           {
             label: "6. Keep going",
-            caption: "Players alternate until the board is full. Most squares wins.",
-            youColor: "Y",
+            caption: "You choose purple and capture the purple square directly above your corner. Red is blocked by the opponent.",
+            youColor: "P",
             oppColor: "R",
-            you: [48, 49, 50],
+            you: [48, 40],
             opp: [7, 6, 15],
-            turn: "You chose yellow",
-            chosen: "Y",
+            turn: "You chose purple",
+            chosen: "P",
           },
         ];
         const boardEl = document.getElementById("demoBoard");
         const choicesEl = document.getElementById("demoChoices");
         const captionEl = document.getElementById("demoCaption");
         const stepEl = document.getElementById("demoStep");
-        if (!boardEl || !choicesEl || !captionEl || !stepEl) return;
+        const prevBtn = document.getElementById("demoPrev");
+        const nextBtn = document.getElementById("demoNext");
+        if (!boardEl || !choicesEl || !captionEl || !stepEl || !prevBtn || !nextBtn) return;
 
         boardEl.innerHTML = board.map((id, index) => {
           const color = colors[id];
@@ -273,11 +279,16 @@
         }
 
         let frameIndex = 0;
-        renderFrame(frames[frameIndex]);
-        window.setInterval(() => {
-          frameIndex = (frameIndex + 1) % frames.length;
+        function showFrame(nextIndex) {
+          frameIndex = Math.max(0, Math.min(frames.length - 1, nextIndex));
           renderFrame(frames[frameIndex]);
-        }, 2300);
+          prevBtn.disabled = frameIndex === 0;
+          nextBtn.disabled = frameIndex === frames.length - 1;
+        }
+
+        prevBtn.addEventListener("click", () => showFrame(frameIndex - 1));
+        nextBtn.addEventListener("click", () => showFrame(frameIndex + 1));
+        showFrame(0);
       })();
     </script>
   </body>
