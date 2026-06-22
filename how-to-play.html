@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to Play GamePigeon Filler</title>
+    <meta
+      name="description"
+      content="Learn how GamePigeon Filler works: setup, legal colors, capturing adjacent squares, scoring, and basic strategy."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Filler rules</p>
+          <h1>How to Play GamePigeon Filler</h1>
+        </div>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Site navigation">
+            <a class="nav-link" href="index.html">Solver</a>
+            <a class="nav-link active" href="how-to-play.html" aria-current="page">How to Play</a>
+          </nav>
+          <a class="button primary" href="index.html">Open Solver</a>
+        </div>
+      </header>
+
+      <section class="rules-layout">
+        <article class="rules-main">
+          <section class="rules-section">
+            <p class="lead">
+              Filler is a two-player color-control game played on a fixed 8 by 7 board. You start in the
+              bottom-left corner, your opponent starts in the top-right corner, and each turn is a choice
+              between the colors neither player currently owns.
+            </p>
+          </section>
+
+          <section class="rules-section">
+            <h2>The Starting Position</h2>
+            <p>
+              Your first square is the bottom-left corner and starts as black. Your opponent's first square is
+              the top-right corner and starts as purple. You always move first.
+            </p>
+            <p>
+              The board is always 8 columns wide and 7 rows tall, using the same six colors: red, green,
+              yellow, blue, purple, and black.
+            </p>
+          </section>
+
+          <section class="rules-section">
+            <h2>How a Turn Works</h2>
+            <ol class="rule-steps">
+              <li>Choose any color except your current color and your opponent's current color.</li>
+              <li>All squares you already own change to the color you picked.</li>
+              <li>You capture any touching square of that color connected to your territory.</li>
+              <li>Only horizontal and vertical connections count. Diagonal squares do not connect.</li>
+              <li>You cannot capture squares that your opponent already owns.</li>
+            </ol>
+          </section>
+
+          <section class="rules-section">
+            <h2>Winning the Game</h2>
+            <p>
+              Players alternate turns until every square belongs to someone. The winner is the player with the
+              most squares at the end. If both players finish with the same number of squares, the game is a
+              draw.
+            </p>
+          </section>
+
+          <section class="rules-section">
+            <h2>Basic Strategy</h2>
+            <div class="strategy-grid">
+              <div>
+                <h3>Grow through clusters</h3>
+                <p>Large connected groups are usually more valuable than a single isolated square.</p>
+              </div>
+              <div>
+                <h3>Watch the border</h3>
+                <p>Moves that create more future options can matter more than the biggest immediate gain.</p>
+              </div>
+              <div>
+                <h3>Block key colors</h3>
+                <p>Your color choice also removes that color from your opponent's next legal choices.</p>
+              </div>
+              <div>
+                <h3>Count the endgame</h3>
+                <p>Late turns are often about denying a capture path instead of expanding quickly.</p>
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <aside class="rules-visual" aria-label="Filler example board">
+          <div class="example-card">
+            <div class="panel-heading">
+              <h2>Example Board</h2>
+              <span class="engine-status">Your first move</span>
+            </div>
+            <div class="example-board" aria-hidden="true">
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--purple)" data-corner="opponent"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+              <span style="--cell-color: var(--red)"></span>
+              <span style="--cell-color: var(--yellow)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--black)" data-corner="you"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--black)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--green)"></span>
+              <span style="--cell-color: var(--purple)"></span>
+              <span style="--cell-color: var(--blue)"></span>
+            </div>
+            <div class="color-key" aria-label="Filler colors">
+              <span><i style="--key-color: var(--red)"></i>Red</span>
+              <span><i style="--key-color: var(--green)"></i>Green</span>
+              <span><i style="--key-color: var(--yellow)"></i>Yellow</span>
+              <span><i style="--key-color: var(--blue)"></i>Blue</span>
+              <span><i style="--key-color: var(--purple)"></i>Purple</span>
+              <span><i style="--key-color: var(--black)"></i>Black</span>
+            </div>
+            <p class="example-note">
+              On the first turn you cannot choose black or purple, so red, green, yellow, and blue are legal.
+            </p>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
