@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/how-to-play.html",
+      "permanent": false
+    }
+  ]
+}
