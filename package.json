@@ -1,0 +1,19 @@
+{
+  "name": "filler-solver-gamepigeon",
+  "version": "1.0.0",
+  "description": "Filler Game Pigeon Solver",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build step required'"
+  },
+  "keywords": [
+    "filler",
+    "gamepigeon",
+    "solver"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
